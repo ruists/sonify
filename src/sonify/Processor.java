@@ -76,8 +76,12 @@ public class Processor {
             Phrase phr = new Phrase("Sonified Phrase " + x, time);
             for(int y = 0; y < image.getHeight(); y++) {
                 color = image.getRGB(x, y);
-                if(color < 0) { //evita valores negativos e ALGUNS valores repetidos
-                    color *= -2;
+//                if(color < 0) { //evita valores negativos e ALGUNS valores repetidos
+//                    color *= -2;
+//                }
+                if(color < 0) {
+                    color *= -1;
+                    color += maxPitch;
                 }
                 
                 pitch = (int)((double)color % maxPitch);
