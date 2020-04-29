@@ -17,13 +17,21 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if (args.length != 1) {
+        if (args.length != 2) {
             System.out.println("Wrong syntax usage.");
         } else {
             try {
-                Processor p = new Processor(args[0]);
-                p.Run();
-            } catch (IOException ex) {
+                Processor p;
+                if(args[0].equalsIgnoreCase("-m")) {
+                    p = new Monophonic(args[1]);
+                    p.Run();
+                } else if(args[0].equalsIgnoreCase("-p")){
+                    p = new Polyphonic(args[1]);
+                    p.Run();
+                } else {
+                    System.out.println("Wrong syntax usage.");
+                }
+            } catch(IOException ex) {
                 System.out.println("An error occurred when opening the image file.");
             }
         }
